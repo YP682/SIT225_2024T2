@@ -13,14 +13,14 @@ def log(message):
     print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - {message}")
 
 while True:  # Infinite loop, keep running
-    # A random number between 1 and 5.
+    # Generate a random integer between 1 and 5.
     data_send = random.randint(1, 5)
 
-    # Write to serial port, set data encoding.
+    # Write the generated integer to the serial port, encode it as UTF-8.
     d = s.write(bytes(str(data_send) + '\n', 'utf-8'))
     log(f"Send >>> {data_send} ({d} bytes)")
 
-    # Read from serial port.
+    # Read from the serial port until "DONE" is received.
     while True:
         d = s.readline().decode("utf-8").strip()
         if d == "DONE":
@@ -30,6 +30,7 @@ while True:  # Infinite loop, keep running
             wait_time = int(d)
             log(f"Received <<< {wait_time}")
 
+            # Sleep for the received amount of seconds.
             log(f"Sleeping for {wait_time} seconds")
             time.sleep(wait_time)
             log("Sleeping done")
