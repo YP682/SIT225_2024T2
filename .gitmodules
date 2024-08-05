@@ -1,0 +1,6 @@
+[submodule "W1"]
+	path = W1
+	url = https://github.com/YP682/W1
+[submodule "W2"]
+	path = W2
+	url = https://github.com/YP682/W2
